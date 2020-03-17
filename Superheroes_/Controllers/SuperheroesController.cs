@@ -11,8 +11,8 @@ namespace Superheroes_.Controllers
 {
     public class SuperheroesController : Controller
     {
-        private ApplicationDbContext _context;
-        public SuperheroesController (ApplicationDbContext context)
+        private  ApplicationDbContext _context;
+        public SuperheroesController(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -46,8 +46,6 @@ namespace Superheroes_.Controllers
             {
                 _context.Superheroes.Add(superhero);
                 _context.SaveChanges();
-               
-
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -59,21 +57,22 @@ namespace Superheroes_.Controllers
         // GET: Superheroes/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var superhero = _context.Superheroes.Find(id);
+            return View(superhero);
         }
 
         // POST: Superheroes/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, Superhero superhero)
+        public ActionResult Edit(Superhero superhero)
         {
             try
-            {               
+            {
                 _context.Superheroes.Update(superhero);
                 _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
-            catch ()
+            catch
             {
                 return View();
             }
@@ -82,14 +81,14 @@ namespace Superheroes_.Controllers
         // GET: Superheroes/Delete/5
         public ActionResult Delete(int id)
         {
-
-            return View();
+            var superhero = _context.Superheroes.Find(id);
+            return View(superhero);
         }
 
         // POST: Superheroes/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, Superhero superhero)
+        public ActionResult Delete(Superhero superhero)
         {
             try
             {
