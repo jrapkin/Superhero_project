@@ -27,7 +27,8 @@ namespace Superheroes_.Controllers
         // GET: Superheroes/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var superheroDetails = _context.Superheroes.Find(id);
+            return View(superheroDetails);
         }
 
         // GET: Superheroes/Create
@@ -81,6 +82,7 @@ namespace Superheroes_.Controllers
         // GET: Superheroes/Delete/5
         public ActionResult Delete(int id)
         {
+
             return View();
         }
 
