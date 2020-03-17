@@ -16,7 +16,7 @@ namespace Superheroes_.Controllers
         {
             _context = context;
         }
-
+        
         // GET: Superheroes
         public ActionResult Index()
         {
@@ -38,11 +38,13 @@ namespace Superheroes_.Controllers
         // POST: Superheroes/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Superhero superhero)
         {
             try
             {
-                // TODO: Add insert logic here
+                _context.Superheroes.Add(superhero);
+                _context.SaveChanges();
+               
 
                 return RedirectToAction(nameof(Index));
             }
