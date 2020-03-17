@@ -65,15 +65,15 @@ namespace Superheroes_.Controllers
         // POST: Superheroes/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, Superhero superhero)
         {
             try
-            {
-                // TODO: Add update logic here
-
+            {               
+                _context.Superheroes.Update(superhero);
+                _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch ()
             {
                 return View();
             }
@@ -89,13 +89,12 @@ namespace Superheroes_.Controllers
         // POST: Superheroes/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int id, Superhero superhero)
         {
             try
             {
-                // TODO: Add delete logic here
-                
-                
+                _context.Superheroes.Remove(superhero);
+                _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
             catch
